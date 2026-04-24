@@ -74,3 +74,34 @@ li{
     font-weight: 500;
     font-size: 1.4rem;
 }
+#transaction{
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+#input{
+    display: flex;
+    justify-content: center;
+}
+#name{
+    padding: 5px;
+    border-radius: 5px;
+    
+}
+
+#amount{
+    padding: 5px;
+    border-radius: 5px;
+    
+}
+#btn{
+    display: flex;
+    justify-self: center;
+    background-color: blue;
+    padding: 5px;
+    border-radius: 5px;
+    color:white;
+    padding-top: 5px;
+}
