@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EXPENSE TRACKER</title>
+<link rel="stylesheet" href="style.css">
 
 </head>
-<link rel="stylesheet" href="style.css">
 <body>
 
 <div class="container">
@@ -15,16 +15,18 @@
 </div>
 
 
-<div class="balance">Your Balance<br>
-Price:0000.00</div>
+<div class="balance">
+    <h1 >Your balance</h1>
+    <h1 id="balance">$0.0</h1>
+</div>
 
 <div class="output">
     <div id="Income">INCOME</div>
-<div id="Expence">EXPENCE</div>
+<div id="Expense">EXPENSE</div>
 </div>
 
 <!-- history -->
- <div id="heading1">Histroy</div>
+ <div id="heading1">History</div>
 
  <div id="tasklist">
      
@@ -38,7 +40,7 @@ Price:0000.00</div>
  <div id="input">
     Name:<Br>
     
-    <input id="name" type="text" placeholder="Enter you name transaction">
+    <input id="text" type="text" placeholder="Enter you name transaction">
     
    
  </div>
@@ -46,9 +48,10 @@ Price:0000.00</div>
  <br>
  
     <div id="input"> Amount:
-    <input id="amount" type="text" placeholder="Enter Amount"></div>
+    <input id="amount" type="number" placeholder="Enter Amount"></div>
     <br>
 
-    <button id="btn">Add transaction</button>
+    <button id="btn" onclick="GetData()">Add transaction</button>
+    <script src="script.js"></script>
 </body>
 </html>
