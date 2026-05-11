@@ -1,12 +1,24 @@
-let balance=document.getElementById("balance");
-let Income=document.getElementById("Income");
-let Expence=document.getElementById("Expense");
+const balance=document.getElementById("balance");
+const money_plus=document.getElementById("income");
+const money_minus=document.getElementById("expense");
 
-let History=document.getElementById("History");
+const History=document.getElementById("list");
+
+const form =document.getElementById("form")
+const text=document.getElementById("text")
 
 
-let text=document.getElementById("text");
-let amount=document.getElementById("amount");
+const amount=document.getElementById("amount");
 
+let transactions = JSON.parse(localStorage.getItem("transactions") || "[]");
 
+function AddTransaction(e){
+    e.preventDefault();
+const transactions={
+    id:Date.now(),
+    text:text.value,
+    amount:+amount.value,
+}
+   
+}
 
