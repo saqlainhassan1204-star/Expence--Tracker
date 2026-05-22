@@ -3,56 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expence Tracker</title>`
-<link rel="stylesheet" href="style.css">
+    <title>Expense Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
     <div class="container">
+
         <h2>Expense Tracker</h2>
 
+        <!-- Balance -->
         <div id="balance">
-            <h3>Your balance</h3>
-            <h1 id="balance-amount">$0.00
-
-
-
-            </h1>
+            <h3>Your Balance</h3>
+            <h1 id="balance-amount">$0.00</h1>
         </div>
 
+        <!-- Income & Expense -->
+        <div class="income-expense">
 
-        <div class="income-Expense">
-
-            <div >
+            <div>
                 <h4>Income</h4>
-                <p id="income" class="class_plus ">+$0.00</p>
+                <p id="income" class="money-plus">+$0.00</p>
             </div>
 
-            <div id="expense " class="money_minus"><h4>Expense</h4>
--$0.00</div>
+            <div>
+                <h4>Expense</h4>
+                <p id="expense" class="money-minus">-$0.00</p>
+            </div>
 
         </div>
 
-        <h3>Transaction</h3>
+        <!-- Form -->
+        <h3>Add New Transaction</h3>
 
-<form id="form">
+        <form id="form">
 
-    <input type="text" id="text" placeholder="Enter the type ">
-    <input type="number" id="amount" placeholder="Enter Your Amount">
-    <button onclick="AddTransaction()">Add Transaction</button>
+            <input 
+                type="text" 
+                id="text" 
+                placeholder="Enter transaction name"
+            >
 
-</form>
+            <input 
+                type="number" 
+                id="amount" 
+                placeholder="Enter amount"
+            >
 
-        
-<h3>History</h3
-<ul id="list" class="list">
+            <button type="submit">
+                Add Transaction
+            </button>
 
-</ul>
+        </form>
 
+        <!-- History -->
+        <h3>History</h3>
+
+        <ul id="list" class="list"></ul>
 
     </div>
-    
-<script src="script.js"></script>
 
+    <script src="script.js"></script>
 
 </body>
 </html>

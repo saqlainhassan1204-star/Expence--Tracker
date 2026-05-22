@@ -1,46 +1,91 @@
-const money_plus=document.getElementById("income");
-const money_minus=document.getElementById("expense");
+const money_plus = document.getElementById("income");
+const money_minus = document.getElementById("expense");
+const history = document.getElementById("list");
+const form = document.getElementById("form");
+const text = document.getElementById("text");
+const amount = document.getElementById("amount");
 
-const History=document.getElementById("list");
+let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
-const form =document.getElementById("form")
-const text=document.getElementById("text")
-
-
-const amount=document.getElementById("amount");
-
-let transactions=JSON.parse(localStorage.getItem("transactions") || "[]");
-function AddTransaction(e){
+// Add Transaction
+function addTransaction(e) {
     e.preventDefault();
 
+    const transaction = {
+        id: Date.now(),
+        text: text.value,
+        amount: +amount.value,
+    };
 
-const transaction={
-    
+    transactions.push(transaction);
 
-    text:text.value,
-    amount:+amount.value,
+    addTransactionDOM(transaction);
+    updateValues();
+    updateLocalStorage();
+
+    text.value = "";
+    amount.value = "";
 }
 
+// Add to DOM
+function addTransactionDOM(transaction) {
+    const sign = transaction.amount < 0 ? "-" : "+";
 
+    const item = document.createElement("li");
+    item.classList.add(transaction.amount < 0 ? "minus" : "plus");
 
+    item.innerHTML = `
+        ${transaction.text}
+        <span>${sign}${Math.abs(transaction.amount)}</span>
+        <button onclick="removeTransaction(${transaction.id})">x</button>
+    `;
 
-transactions.push(transaction);
-AddTransactionDom(transaction);
-updateValues();
-
-text.value=""
-amount.value="";
-  
+    history.appendChild(item);
 }
- 
 
-function AddTransactionDom(transaction){
-const balance=document.getElementById("balance-amount");
+// Update balance, income, expense
+function updateValues() {
+    const amounts = transactions.map(t => t.amount);
 
-balance.innerHTML="";
+    const total = amounts
+        .reduce((acc, item) => acc + item, 0)
+        .toFixed(2);
 
-    balance.innerHTML+=item.text + "-" + item.amount + "<br>";
+    const income = amounts
+        .filter(item => item > 0)
+        .reduce((acc, item) => acc + item, 0)
+        .toFixed(2);
 
+    const expense = (
+        amounts
+            .filter(item => item < 0)
+            .reduce((acc, item) => acc + item, 0) * -1
+    ).toFixed(2);
 
-
+    money_plus.innerText = `+${income}`;
+    money_minus.innerText = `-${expense}`;
 }
+
+// Remove transaction
+function removeTransaction(id) {
+    transactions = transactions.filter(t => t.id !== id);
+    updateLocalStorage();
+    init();
+}
+
+// Save to localStorage
+function updateLocalStorage() {
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+}
+
+// Render app
+function init() {
+history.innerText = "";
+    transactions.forEach(addTransactionDOM);
+    updateValues();
+}
+
+init();
+
+// Form submit
+form.addEventListener("submit", addTransaction);
