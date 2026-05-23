@@ -4,6 +4,8 @@ const history = document.getElementById("list");
 const form = document.getElementById("form");
 const text = document.getElementById("text");
 const amount = document.getElementById("amount");
+const balance=document.getElementById("balance");
+
 
 let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
@@ -29,7 +31,7 @@ function addTransaction(e) {
 
 // Add to DOM
 function addTransactionDOM(transaction) {
-    const sign = transaction.amount < 0 ? "-" : "+";
+const sign=transaction.amount<0 ?"-":"+";
 
     const item = document.createElement("li");
     item.classList.add(transaction.amount < 0 ? "minus" : "plus");
@@ -45,7 +47,7 @@ function addTransactionDOM(transaction) {
 
 // Update balance, income, expense
 function updateValues() {
-    const amounts = transactions.map(t => t.amount);
+    const amounts=transactions.map(t=>t.amount);
 
     const total = amounts
         .reduce((acc, item) => acc + item, 0)
@@ -61,6 +63,9 @@ function updateValues() {
             .filter(item => item < 0)
             .reduce((acc, item) => acc + item, 0) * -1
     ).toFixed(2);
+
+    
+
 
     money_plus.innerText = `+${income}`;
     money_minus.innerText = `-${expense}`;
